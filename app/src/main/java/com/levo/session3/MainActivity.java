@@ -79,7 +79,17 @@ public class MainActivity extends AppCompatActivity {
             player.start();
 
             btPlay.setText("Stop");
-            this.playing = true;
+            playing = true;
+
+
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlaying();
+                }
+
+            });
         } catch (IOException e) {
             Log.e(LOG_TAG, e.toString());
         }
@@ -95,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         player = null;
 
         btPlay.setText("Play");
-        this.playing = false;
+        playing = false;
 
     }
 
